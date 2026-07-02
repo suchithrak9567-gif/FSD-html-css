@@ -1,0 +1,17 @@
+/* external style */
+h2{
+        color: brown;
+    }
+    p{
+        color: yellow;
+    }
+    #head-3{
+        color: chartreuse;
+        font-size: 50px;
+
+    }
+    .font-theme{
+        color: darkmagenta;
+        text-align: center;
+
+    }
