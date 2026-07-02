@@ -4,14 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Intro to HTML</title>
+
+  
+    <!-- internal style -->
+ <style>
+    /* h2{
+        color: brown;
+    }
+    p{
+        color: yellow;
+    }
+    #head-3{
+        color: chartreuse;
+        font-size: 50px;
+
+    }
+    .font-theme{
+        color: darkmagenta;
+        text-align: center;
+
+    } */
+</style> 
+  <link rel="stylesheet" href="style.css"/>
 </head>
+
 <body>
-    <h1> Heading 1 </h1>
+    <h1 style="color: blue;"> Heading 1 </h1>
     <h2> Heading 2 </h2>
-    <h3> Heading 3 </h3>
-    <h4> Heading 4</h4>
+     <h2 style="color: green;"> Heading 2 </h2>
+    <h3 id="head-3"> Heading 3 </h3>
+    <h4 class="font-theme"> Heading 4</h4>
     <h5> Heading 5</h5>
-    <h6> Heading 6</h6>
+    <h6 class="font-theme"> Heading 6</h6>
     <p>
         Mountains are large landforms and structures of different shapes
          that have risen prominently above the surrounding terrain. 
@@ -99,5 +123,31 @@
     <aside></aside>
     <article></article>
     <span></span>
+    <br>
+    <br>
+    <hr>
+    <form>
+        <label for="name"> Name :</label>
+        <input id="name" type="text" placeholder="Enter Your name" required/>
+       <label for="password">Password :</label>
+        <input id="Password" type="password" placeholder="Enter Password" required/>
+        <label for="">Male</label>
+        <input type="radio" name="gender" value="Male">
+              <label for="">Female</label>
+        <input type="radio" name="gender" value="Female">
+        <label for="Email">Email Id :</label>
+        <input id="Email" type="email" placeholder="Enter Your Email" required/>
+        <label>
+            Please Accept 
+        </label>
+        <input type="checkbox">
+        <button disabled>Register
+        </button>
+
+
+        <input type="password"/>
+
+    </form>
+    <br>
 </body>
 </html>
