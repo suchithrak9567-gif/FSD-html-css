@@ -1,0 +1,23 @@
+.form{
+
+align-items: center;
+background-color: rgb(56, 123, 84);
+align-content: center;
+justify-content: center;
+display:flexbox;
+
+}
+label{
+    color: aliceblue;
+}
+button{
+    background-color: rgb(93, 150, 150);
+    color: rgb(255, 255, 255);
+    font-style: italic;
+    font-size: medium;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    width: auto;
+    text-align: center;
+    width: 200px;
+    height: 30px;
+}
