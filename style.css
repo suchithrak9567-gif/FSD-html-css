@@ -68,3 +68,138 @@ p{
       /* font-weight: 500; */
 
 }
+.parent{
+width:500px;
+height: 500px;
+background-color: rgb(173, 141, 141);
+position: relative;
+}
+.child-1{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    /* margin-left: 400px; */
+    position: absolute;
+    /* default position left */
+    /* right: 0; */
+     /* right: 10px; */
+     /* bottom: 0;
+     top: 40px;
+     left: 40px; */
+    z-index: 2;
+    right: 0;
+}
+.child-2{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(35, 32, 94);
+    /* margin-left: 400px; */
+    position: absolute;
+    /* default position left */
+    /* right: 0; */
+     /* right: 10px; */
+     /* bottom: 0;
+     top: 40px;
+     left: 40px; */
+    /* top: 40px; */
+    z-index: 1;
+    bottom: 0;
+}
+/* flexbox concept */
+
+.card-1{
+    width: 200px;
+    height: 100px;
+    background-color: #ff6347;
+
+}
+.card-2{
+    width: 200px;
+    height: 100px;
+    background-color: aqua;
+}.card-3{
+    width: 200px;
+    height: 100px;
+    background-color: #4756ff;
+}
+.home{
+    display: flex;
+    /* horizondal vertical-column */
+    /* flex-direction: row; */
+    background-color: rgb(195, 205, 214);
+    /* horizondal item center  contant space*/
+    /* justify-content: center; */
+    justify-content: space-between;
+    /* justify-content: space-around; */
+    /* justify-content: space-evenly; */
+    /* justify-content: end; */
+    /* gap: 50px; */
+    height: 200px;
+    /* verticaliy align item center */
+    align-items: center;
+    
+
+}
+header{
+    display: flex;
+    justify-content: center;
+    background-color: black;
+
+  nav{
+    display: flex;
+      a{
+        text-decoration: none;
+        color: beige;
+        padding: 10px 20px;
+        display: block;
+        transition: 0.5s ease-in-out;
+        &:hover{
+            background-color: chartreuse;
+            /* color: chartreuse; */
+            border-radius: 15px;
+        }
+
+      }
+     }
+}
+/* grid-css system */
+.container{
+    display: grid;
+        /* grid-template-columns: 200px 200px 200px; */
+        /* grid-template-columns: 1fr 1fr 1fr;         */
+        /* grid-template-columns: repeat(3,1fr); */
+        /* grid-template-rows: repeat(3,1fr); */
+        grid-template-rows: repeat(3,200px);
+
+        gap: 10px; 
+        .card-item{
+            border: 1px solid black;
+         }
+}
+/* media query */
+.css-media-query{
+    background-color: rgb(117, 99, 133);
+    width:100%;
+    height:200px ;
+
+}
+.bg-orange{
+    background-color: #ff6347;
+
+}
+/* @media (max-width: 768px) {
+    .css-media-query {
+        background-color: red;
+    }
+}
+@media (max-width: 480px) {
+    .css-media-query {
+        background-color: rgb(255, 208, 0);
+    }
+}
+/* upto 480 */
+/* @media (min-width: 48px) {
+    .css-media-query {
+        background-color: red;
+    }
+} */ 

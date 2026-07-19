@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Vibe - Navbar</title>
+  <style>
+    /* Reset & base fixes: remove browser inconsistencies and set box-sizing */
+    *,*::before,*::after{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:#111}
+
+    /* Sticky navbar container - high z-index to remain above content but not excessively high */
+    .navbar{
+      position:fixed; /* keep navbar visible while scrolling */
+      top:0;left:0;right:0;
+      height:64px;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 20px;gap:20px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+      border-bottom:1px solid rgba(16,24,40,0.06);
+      z-index:1000; /* prevents overlapping issues */
+      backdrop-filter: blur(6px);
+    }
+
+    /* Ensure page content isn't hidden behind the fixed navbar */
+    main{padding-top:64px}
+
+    /* Logo area */
+    .brand{
+      display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;
+    }
+    .brand__logo{width:36px;height:36px;border-radius:8px;display:inline-block;background:#0ea5a4;flex:0 0 36px}
+    .brand__text{font-weight:700;font-size:18px;letter-spacing:0.2px}
+
+    /* Desktop menu */
+    .nav-links{display:flex;align-items:center;gap:8px;margin-left:12px}
+    .nav-item{list-style:none}
+    .nav-link{
+      display:inline-block;padding:8px 12px;border-radius:8px;text-decoration:none;color:rgba(17,24,39,0.85);font-weight:500;
+      transition:background .18s ease,color .18s ease,transform .18s ease;
+    }
+    .nav-link:hover{background:rgba(15,23,42,0.04);transform:translateY(-1px)}
+    .nav-link[aria-current="page"]{background:#0ea5a4;color:white}
+
+    /* CTA button */
+    .cta{background:#111827;color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+    .cta:hover{opacity:0.9}
+
+    /* Hamburger for smaller screens */
+    .hamburger{
+      display:none; /* hidden on desktop */
+      width:44px;height:44px;border-radius:8px;align-items:center;justify-content:center;cursor:pointer;background:transparent;border:none
+    }
+    .hamburger__box{position:relative;width:22px;height:14px}
+    .hamburger__line{
+      position:absolute;left:0;right:0;height:2px;background:#111;transition:transform .25s ease,opacity .2s ease,top .25s ease}
+    .hamburger__line--1{top:0}
+    .hamburger__line--2{top:6px}
+    .hamburger__line--3{top:12px}
+
+    /* Mobile menu overlay */
+    .mobile-menu{
+      position:fixed;inset:64px 0 0 0; /* anchored below navbar */
+      background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+      transform:translateY(-8px) scaleY(.98);opacity:0;pointer-events:none;transition:opacity .28s ease,transform .28s ease;
+      z-index:999;display:flex;flex-direction:column;padding:12px 18px;gap:8px;overflow:auto
+    }
+    .mobile-menu.open{opacity:1;pointer-events:auto;transform:none}
+
+    .mobile-link{display:block;padding:12px 16px;border-radius:8px;text-decoration:none;color:#111;font-weight:600}
+    .mobile-link:hover{background:rgba(15,23,42,0.04)}
+
+    /* Hamburger active animation to X */
+    .hamburger.active .hamburger__line--1{transform:translateY(6px) rotate(45deg)}
+    .hamburger.active .hamburger__line--2{opacity:0}
+    .hamburger.active .hamburger__line--3{transform:translateY(-6px) rotate(-45deg)}
+
+    /* Responsive breakpoints */
+    @media (max-width:900px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .cta{display:none}
+    }
+
+    @media (min-width:901px){
+      .mobile-menu{display:none}
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar" role="banner">
+    <a href="#" class="brand" aria-label="Vibe home">
+      <span class="brand__logo" aria-hidden="true"></span>
+      <span class="brand__text">Vibe</span>
+    </a>
+
+    <!-- Desktop nav -->
+    <nav role="navigation" aria-label="Main Navigation" style="display:flex;align-items:center;flex:1;justify-content:center">
+      <ul class="nav-links" role="menubar">
+        <li class="nav-item" role="none"><a class="nav-link" role="menuitem" href="#home" aria-current="page">Home</a></li>
+        <li class="nav-item" role="none"><a class="nav-link" role="menuitem" href="#features">Features</a></li>
+        <li class="nav-item" role="none"><a class="nav-link" role="menuitem" href="#pricing">Pricing</a></li>
+        <li class="nav-item" role="none"><a class="nav-link" role="menuitem" href="#about">About</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <a class="cta" href="#get-started">Get Started</a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+        <span class="hamburger__box">
+          <span class="hamburger__line hamburger__line--1"></span>
+          <span class="hamburger__line hamburger__line--2"></span>
+          <span class="hamburger__line hamburger__line--3"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu (hidden on desktop) -->
+  <div id="mobile-menu" class="mobile-menu" role="menu" aria-hidden="true">
+    <a class="mobile-link" href="#home" role="menuitem">Home</a>
+    <a class="mobile-link" href="#features" role="menuitem">Features</a>
+    <a class="mobile-link" href="#pricing" role="menuitem">Pricing</a>
+    <a class="mobile-link" href="#about" role="menuitem">About</a>
+    <a class="mobile-link" href="#get-started" role="menuitem">Get Started</a>
+  </div>
+
+  <main>
+    <section style="padding:40px;max-width:900px;margin:0 auto">
+      <h1>Page content</h1>
+      <p>This demo contains a fixed responsive navbar. Scroll to test sticky behavior and open the menu on small screens.</p>
+      <div style="height:1200px;background:linear-gradient(#fff,#f7f7fb)"></div>
+    </section>
+  </main>
+
+  <script>
+    // JS: toggle mobile menu with smooth animations and accessible attributes
+    (function(){
+      const btn = document.querySelector('.hamburger');
+      const menu = document.getElementById('mobile-menu');
+      if(!btn || !menu) return;
+
+      function open(){
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded','true');
+        menu.classList.add('open');
+        menu.setAttribute('aria-hidden','false');
+        // prevent body scroll when open
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        btn.classList.remove('active');
+        btn.setAttribute('aria-expanded','false');
+        menu.classList.remove('open');
+        menu.setAttribute('aria-hidden','true');
+        document.body.style.overflow = '';
+      }
+
+      btn.addEventListener('click', ()=>{
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        if(expanded) close(); else open();
+      });
+
+      // Close on ESC or when clicking outside mobile menu on small screens
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') close(); });
+      document.addEventListener('click', (e)=>{
+        if(!menu.contains(e.target) && !btn.contains(e.target) && menu.classList.contains('open')) close();
+      });
+
+      // Ensure menu state resets when resizing to desktop
+      let resizeTimer;
+      window.addEventListener('resize', ()=>{
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(()=>{
+          if(window.innerWidth > 900) { close(); }
+        },150);
+      });
+    })();
+  </script>
+</body>
+</html>
+
